@@ -3,8 +3,8 @@ spring:
     name: HelloClient
   redis:
     port: 6379
-    host: ecndata.cn
-    password: redismm6436
+    host: xxxx
+    password: xxxxx
   profiles:
     active:
 
