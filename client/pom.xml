@@ -12,10 +12,10 @@
 	<description>Demo project for Spring Cloud</description>
 
 	<parent>
-		<groupId>org.test</groupId>
-		<artifactId>feign-eureka</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>..</relativePath> <!-- lookup parent from repository -->
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.5.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -24,6 +24,12 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.6.1</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.posiedon.wh</groupId>
 			<artifactId>config-center-redis-spring-boot-starter</artifactId>
@@ -71,7 +77,17 @@
 			<version>4.12</version>
 		</dependency>
 	</dependencies>
-
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Hoxton.SR3</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<build>
 		<plugins>
 			<plugin>
