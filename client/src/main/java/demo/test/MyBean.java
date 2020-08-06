@@ -35,4 +35,22 @@ public class MyBean {
                 ", age=" + age +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MyBean myBean = (MyBean) o;
+
+        if (name != null ? !name.equals(myBean.name) : myBean.name != null) return false;
+        return age != null ? age.equals(myBean.age) : myBean.age == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (age != null ? age.hashCode() : 0);
+        return result;
+    }
 }

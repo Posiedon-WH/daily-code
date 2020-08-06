@@ -199,4 +199,98 @@ public class ConcurrentTest {
         }
         return result;
     }
+
+    @Test
+    public void climbTest(){
+//        logger.info(climbStairs(4));
+
+    }
+
+    public int climbStairs(int n) {
+
+        int[] fn=new int[n+1];
+        fn[0]=1;
+        fn[1]=1;
+        for (int i = 2; i <= n; i++) {
+            fn[i]=fn[i-1]+fn[i-2];
+        }
+
+        return fn[n];
+    }
+
+    @Test
+    public void equalTest(){
+        String a = new String("ab"); // a 为一个引用
+        String b = new String("ab"); // b 为另一个引用,对象的内容一样
+        String aa = "ab"; // 放在常量池中
+        String bb = "ab"; // 从常量池中查找
+        if (aa == bb) // true
+            System.out.println("aa==bb");
+        if (a == b) // false，非同一对象
+            System.out.println("a==b");
+        if (a.equals(b)) // true
+            System.out.println("aEQb");
+        if (42 == 42.0) { // true
+            System.out.println("true");
+        }
+        try {
+            System.out.println("1");
+            throw new Exception();
+        } catch (Exception e) {
+            System.out.println("2");
+        }finally {
+            System.out.println("3");
+        }
+    }
+
+    @Test
+    public void myTest(){
+        int a=0;int c=0;
+        do{
+            c--;
+            a=a-1;
+        }while(a>0);
+        System.out.println("a="+a+"c="+c);
+
+        int n=1;
+        System.out.println(n++);
+        System.out.println(++n);
+        System.out.println(Character.MAX_VALUE);//2^16 2个字节
+        System.out.println(Byte.MIN_VALUE);//2^8 8位 1个字节
+        System.out.println(Short.MAX_VALUE);//2^16 2个字节
+        System.out.println(Integer.MAX_VALUE);//2^32 4个字节
+        System.out.println(Long.MAX_VALUE);//2^64 8个字节
+        System.out.println(Float.MAX_VALUE);//2^32 4个字节
+        System.out.println(Double.MAX_VALUE);//2^64 8个字节
+        System.out.println(Boolean.TRUE);//1 一位
+    }
+
+    @Test
+    public void testRunable(){
+        class Foo implements Runnable{
+            @Override
+            public void run() {
+                System.out.println("running");
+            }
+        }
+
+        new Thread(new Foo()).start();
+
+        StringBuffer a=new StringBuffer("A");
+        StringBuffer b=new StringBuffer("B");
+        op(a,b);
+        System.out.println(a+","+b);
+
+        SuperClazz superClazz = new SuperClazz("p1", "p2");
+        superClazz.print();
+
+        SuperClazz subClazz = new SubClazz("c1", "c2");
+        subClazz.print();
+    }
+
+    static void op (StringBuffer x,StringBuffer y){
+        x.append(y);
+        y=x;
+    }
+
 }
