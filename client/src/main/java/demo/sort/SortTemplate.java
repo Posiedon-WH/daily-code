@@ -122,4 +122,6 @@ public class SortTemplate {
         sort(a2,SortType.QUICK);
         show(a2);
     }
+
+
 }
