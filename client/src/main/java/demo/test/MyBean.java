@@ -1,10 +1,16 @@
 package demo.test;
 
-public class MyBean {
+public class MyBean implements Cloneable{
     private String name;
     private Integer age;
 
     public MyBean() {
+    }
+
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public MyBean(String name, Integer age) {
@@ -35,4 +41,5 @@ public class MyBean {
                 ", age=" + age +
                 '}';
     }
+
 }

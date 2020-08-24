@@ -56,8 +56,10 @@ public class ConcurrentTest {
     @Test
     public void ConstantTest() {
         String a = "posiedon";
+        String a1 = "posiedon";
         String b = new String("posiedon");
 
+        logger.info(a==a1);
         logger.info(b == a);
         logger.info(b.equals(a));
         logger.info(b.intern() == a);
@@ -198,5 +200,12 @@ public class ConcurrentTest {
             result=result+charArray[i];
         }
         return result;
+    }
+
+    @Test
+    public void myReflect(){
+        MyBean myBean = new MyBean();
+        Class aClass = myBean.getClass();
+        System.out.println(aClass.getName());
     }
 }
