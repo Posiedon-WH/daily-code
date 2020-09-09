@@ -73,4 +73,13 @@ public class ZkclientTest {
         Thread.sleep(Integer.MAX_VALUE);
 
     }
+
+    @Test
+    public void test2(){
+        ZkClient zkClient = new ZkClient(SERVER, SESSION_TIMEOUT);
+        List<String> children = zkClient.getChildren("/n3");
+        children.forEach(System.out::println);
+        String path = zkClient.createEphemeralSequential("/n3/", 1);
+        System.out.println("path===  "+path);
+    }
 }
