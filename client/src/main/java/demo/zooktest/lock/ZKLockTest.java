@@ -2,6 +2,8 @@ package demo.zooktest.lock;
 
 import org.junit.Test;
 
+import java.util.concurrent.CountDownLatch;
+
 /**
  * @Author: Posiedon.wh
  * @Date: 2020/9/9 21:40
@@ -9,7 +11,7 @@ import org.junit.Test;
 public class ZKLockTest {
 
     @Test
-    public void testDisLock(){
+    public void testDisLock()  {
         for (int i = 0; i < 50; i++) {
             new Thread(new OrderTask()).start();
         }

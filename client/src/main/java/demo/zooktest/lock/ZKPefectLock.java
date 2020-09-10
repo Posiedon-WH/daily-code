@@ -34,6 +34,7 @@ public class ZKPefectLock extends ZkAbstrackLock{
         List<String> children = zkClient.getChildren(path);
         Collections.sort(children);
         System.out.println("排队个数:"+children.size());
+        children.forEach(System.out::println);
         if(currentPath.equals(path+"/"+children.get(0))){
             return true;
         }else {

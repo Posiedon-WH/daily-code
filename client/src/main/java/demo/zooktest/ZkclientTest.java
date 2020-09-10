@@ -14,8 +14,9 @@ import java.util.List;
  */
 public class ZkclientTest {
 
-    private static final String SERVER="192.168.1.106:2181,192.168.1.107:2181";
-    private final int SESSION_TIMEOUT=50000;
+//    private static final String SERVER="192.168.1.106:2181,192.168.1.107:2181";
+    private static final String SERVER="centos106:2181,centos107:2181,centos108:2181";
+    private final int SESSION_TIMEOUT=100000;
 
     @Test
     public void test1() throws InterruptedException {
