@@ -6,7 +6,6 @@ package demo.zooktest.lock;
  */
 public abstract class AbstractLock implements Lock{
 
-
     @Override
     public void getLock() {
 
