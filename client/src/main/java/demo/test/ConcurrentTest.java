@@ -12,7 +12,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedList;
 import java.util.Stack;
 
-
 public class ConcurrentTest {
     private static final Log logger = LogFactory.getLog(ConcurrentTest.class);
 

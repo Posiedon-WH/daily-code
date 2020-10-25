@@ -1,5 +1,6 @@
 package demo.think.contest;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import java.util.concurrent.atomic.LongAdder;
  * @Date: 2020/10/4 10:53
  *
  */
+@Slf4j(topic = "contest")
 public class ConTest {
     private final static Logger logger=LoggerFactory.getLogger(ConTest.class);
 
@@ -58,6 +60,7 @@ public class ConTest {
 
     @Test
     public void test3(){
+        log.info("switch Methods");
         SwitchMethod(null);//空指针异常
 
     }
