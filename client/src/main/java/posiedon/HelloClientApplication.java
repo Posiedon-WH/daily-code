@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@RestController
 //@EnableFeignClients
 public class HelloClientApplication {
-	// posiedon wh
+	// posiedon wh java
 	public static void main(String[] args) {
 		SpringApplication.run(HelloClientApplication.class, args);
 	}
