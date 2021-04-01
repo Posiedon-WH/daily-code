@@ -211,4 +211,9 @@ public class FileTest {
         }
         return stringBuilder.toString();
     }
+
+
+    private byte[] decompress(){
+        return null;
+    }
 }

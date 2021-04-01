@@ -1,4 +1,4 @@
-package posiedon.test;
+package posiedon.test.concurrent;
 
 
 import org.apache.commons.logging.Log;
@@ -12,9 +12,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedList;
 import java.util.Stack;
 
+import lombok.extern.slf4j.Slf4j;
+import posiedon.test.MyAbstract;
+import posiedon.test.MyAbstractSub;
+import posiedon.test.MyBean;
+import posiedon.test.SubClazz;
+import posiedon.test.SuperClazz;
 
+@Slf4j
 public class ConcurrentTest {
-    private static final Log logger = LogFactory.getLog(ConcurrentTest.class);
 
     @Test
     public void test1() {
@@ -33,7 +39,7 @@ public class ConcurrentTest {
     @Test
     public void createClassTest() throws ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException {
         MyBean myBean = new MyBean("posiedon", 20);
-        logger.info(myBean.toString());
+        log.info(myBean.toString());
 
         Class<?> aClass = Class.forName("posiedon.test.MyBean");
 
@@ -41,16 +47,16 @@ public class ConcurrentTest {
 
         Object o = constructors[0].newInstance();
         MyBean myBean1 = (MyBean) o;
-        logger.info(myBean1.toString());
+        log.info(myBean1.toString());
 
 
         Class<?>[] parameterTypes = constructors[1].getParameterTypes();
         Object o1 = constructors[1].newInstance(new Object[]{"haha", 11});
         MyBean myBean2 = (MyBean) o1;
-        logger.info(myBean2.toString());
+        log.info(myBean2.toString());
 
         MyBean myBean3 = BeanUtils.instantiateClass(MyBean.class);
-        logger.info(myBean3);
+        log.info(myBean3.toString());
     }
 
     @Test
@@ -59,10 +65,10 @@ public class ConcurrentTest {
         String a1 = "posiedon";
         String b = new String("posiedon");
 
-        logger.info(a==a1);
-        logger.info(b == a);
-        logger.info(b.equals(a));
-        logger.info(b.intern() == a);
+        log.info(String.valueOf(a==a1));
+        log.info(String.valueOf(b == a));
+        log.info(String.valueOf(b.equals(a)));
+        log.info(String.valueOf(b.intern() == a));
     }
 
     @Test
@@ -100,35 +106,35 @@ public class ConcurrentTest {
 //        SoftReference<MyBean> softReference = new SoftReference<>(ss);
         WeakReference<MyBean> softReference = new WeakReference<>(ss);
         ss = null;//取消强引用，确保只有软引用持有对象
-        logger.info("====" + softReference.get());
+        log.info("====" + softReference.get());
         System.gc();
-        logger.info("====" + softReference.get());
+        log.info("====" + softReference.get());
         LinkedList<byte[]> list = new LinkedList<>();
         try {
             for (int i = 0; i < 100; i++) {
-                logger.info("====" + softReference.get());
+                log.info("====" + softReference.get());
                 list.add(new byte[1024 * 1024]);
             }
         } catch (Exception e) {
-            logger.info("===exception===" + softReference.get());
+            log.info("===exception===" + softReference.get());
         }
     }
 
     @Test
     public void initTest() {
         //只会触发父类的初始化
-        logger.info(SubClazz.value);
-        logger.error("=====");
+        log.info(SubClazz.value);
+        log.error("=====");
         //不会触发类的初始化
         SuperClazz[] superClazzes = new SuperClazz[10];
-        logger.error("=====");
+        log.error("=====");
         //先初始化父类，在初始化子类
         SubClazz subClazz = new SubClazz();
 
-        logger.error("=====");
-        logger.info(SuperClazz.value);
+        log.error("=====");
+        log.info(SuperClazz.value);
 
-        logger.error("=====");
+        log.error("=====");
         System.out.println(SuperClazz.valref);
     }
 
@@ -139,7 +145,6 @@ public class ConcurrentTest {
         System.out.println(s1);
 
     }
-
 
     public String decodeString(String s) {
         Stack<Character> stack=new Stack<>();
