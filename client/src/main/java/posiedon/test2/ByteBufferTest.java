@@ -20,33 +20,58 @@ public class ByteBufferTest {
 
     @Before
     public void before(){
-        buffer = ByteBuffer.allocate(16);
+        buffer = ByteBuffer.allocate(36);
     }
 
 
     @Test
     public void writeTest(){
 
-        log.info("before==========");
-        logInfo();
+//        log.info("before==========");
+//        logInfo();
+//
+//        log.info("write begin=====");
+//        buffer.put((byte) 1);
+//        logInfo();
+//        log.info("put int======");
+//        buffer.putInt(23);
+//        logInfo();
+//        log.info("======flip====");
+//        buffer.flip();
+//        logInfo();
+//        result=new byte[2];
+//        int rlen=2;
+        String s="hello world";
+        String s2="java new";
 
-        log.info("write begin=====");
-        buffer.put((byte) 1);
+        buffer.put(s.getBytes());
         logInfo();
-        log.info("put int======");
-        buffer.putInt(23);
+        buffer.put(s2.getBytes());
         logInfo();
-        log.info("======flip====");
         buffer.flip();
+        byte[] bytes = new byte[buffer.limit()];
         logInfo();
-        result=new byte[2];
-        int rlen=2;
-//        byte b = buffer.get();
-      /*  while (buffer.hasRemaining()){
-            if(buffer.remaining()>rlen){
+        buffer.get(bytes);
+        log.info("读取数据：【{}】",new String(bytes));
+        logInfo();
 
-            }
-        }*/
+        if(buffer.hasRemaining()){
+            buffer.compact();
+        }else {
+            buffer.clear();
+        }
+        logInfo();
+
+        buffer.put("世界真美好".getBytes());
+
+        logInfo();
+
+//        byte b = buffer.get();
+//        while (buffer.hasRemaining()){
+//            if(buffer.remaining()>rlen){
+//
+//            }
+//        }
 //        buffer.get(result,0,2);
 //        logInfo();
 

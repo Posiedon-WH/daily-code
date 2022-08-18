@@ -2,12 +2,17 @@ package posiedon.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 @JsonIgnoreProperties("age")
+@Data
 public class MyBean {
 
     private String name;
-    private int age;
+    private Integer age;
+
+    private String content;
+    private Long money;
 
     @JsonIgnore
     private int income;
@@ -46,16 +51,24 @@ public class MyBean {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    @Override
-    public String toString() {
-        return "MyBean{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", income=" + income +
-                '}';
+    public String getContent() {
+        return content;
     }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    //    @Override
+//    public String toString() {
+//        return "MyBean{" +
+//                "name='" + name + '\'' +
+//                ", age=" + age +
+//                ", income=" + income +
+//                '}';
+//    }
 }

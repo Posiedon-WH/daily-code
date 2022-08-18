@@ -7,14 +7,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
 
 import com.alibaba.fastjson.JSON;
 
+import posiedon.annotation.MyType;
 import posiedon.annotation.NALogItem;
 import lombok.extern.slf4j.Slf4j;
+import posiedon.bean.MyBean;
 
 
 /**
@@ -118,6 +121,23 @@ public class LogTest {
         } catch (IOException e) {
             log.error(e.getMessage());
         }
+    }
+
+    @Test
+    public void test11(){
+        MyBean myBean = new MyBean();
+        myBean.setAge(12);
+        myBean.setContent("13csd");
+        myBean.setIncome(3022);
+        String s = JSON.toJSONString(myBean);
+        log.info("序列化：{}",s);
+
+//        MyBean myBean1 = JSON.parseObject(s, MyBean.class);
+//        log.info("反序列化：{}",myBean1);
+        JSONObject jsonObject = JSONObject.parseObject(s);
+        jsonObject.put("age",24);
+
+        log.info("json put change value {}",jsonObject.toJSONString());
     }
 
 }
