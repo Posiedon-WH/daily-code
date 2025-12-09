@@ -14,6 +14,8 @@ public class MyBean {
     private String content;
     private Long money;
 
+    private Boolean active;
+
     @JsonIgnore
     private int income;
 
